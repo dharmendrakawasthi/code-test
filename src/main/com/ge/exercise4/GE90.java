@@ -41,11 +41,20 @@ public class GE90 {
     }
 
     public double thrustToWeightRatio() {
-        return takeoffThrust / wetWeight;
+//        return takeoffThrust / wetWeight;
+    	 return takeoffThrust / dryWeight;
     }
 
     public String toString() {
         return ENGINE_MODEL + " SN: " + serialNumber;
     }
 
+    public double timeToRebuild() {
+    	return flightHoursBeforeRebuild - flightHours;
+    }
+    
+    public double serviceLifeLeft() {
+    	
+    	return ((maxNumRebuilds - numRebuilds)*flightHoursBeforeRebuild) - flightHours;
+    }
 }
