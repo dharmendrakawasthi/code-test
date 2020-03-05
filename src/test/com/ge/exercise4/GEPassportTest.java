@@ -11,7 +11,7 @@ public class GEPassportTest {
 
     @Before
     public void setUp() {
-        testEngine = new GEPassport("0001");
+        testEngine = new GEPassport("0001", 10_000, 1);
     }
 
     @Test
@@ -23,4 +23,14 @@ public class GEPassportTest {
     public void thrustToWeightRatioTest() {
         assertEquals(testEngine.takeoffThrust / testEngine.dryWeight, testEngine.thrustToWeightRatio(), 0.01);
     }
+    
+    @Test
+  	public void timeToRebuildTest() {
+  		assertEquals(Double.toString(40_000.0),Double.toString(testEngine.timeToRebuild()));
+  	}
+  	
+  	@Test
+  	public void serviceLifeLeftTest() {
+  		assertEquals(Double.toString(40_000.0),Double.toString(testEngine.serviceLifeLeft()));
+  	}
 }
