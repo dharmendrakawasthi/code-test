@@ -20,7 +20,7 @@ public class ArrayQuadrantUtil<T> {
 		int divCol = data[0].length / 2;
 		int divRow = data.length / 2;
 
-//		Generic array to store the data
+//		Generic array to store the data.
 		T[] arr = (T[]) new Object[divRow + divCol];
 
 		int len = arr.length - 1;
