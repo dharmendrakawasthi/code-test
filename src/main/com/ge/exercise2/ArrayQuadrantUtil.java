@@ -30,7 +30,7 @@ public class ArrayQuadrantUtil<T> {
 		int minCol = 0;
 		int maxCol = 0;
 
-		if (row < divRow && column < divCol) {
+		if (row < divRow && column < divCol) {      // check for first quadrant
 
 			minRow = 0;
 			maxRow = divRow - 1;
@@ -49,7 +49,7 @@ public class ArrayQuadrantUtil<T> {
 				len--;
 			}
 
-		} else if (row < divRow && column >= divCol) {
+		} else if (row < divRow && column >= divCol) {     // Check for second quadrant
 
 			minRow = 0;
 			maxRow = divRow - 1;
@@ -69,7 +69,7 @@ public class ArrayQuadrantUtil<T> {
 				len--;
 			}
 
-		} else if (row >= divRow && column < divCol) {
+		} else if (row >= divRow && column < divCol) {     // check for third quadrant
 
 			minRow = divRow;
 			maxRow = data.length - 1;
@@ -87,7 +87,7 @@ public class ArrayQuadrantUtil<T> {
 				}
 				len--;
 			}
-		} else if (row >= divRow && column >= divCol) {
+		} else if (row >= divRow && column >= divCol) {     // check for fourth quadrant
 
 			minRow = divRow;
 			maxRow = data.length - 1;
@@ -112,33 +112,37 @@ public class ArrayQuadrantUtil<T> {
 
 	public T[] getRowCol(String rowCol, int index) {
 
+// get the middle of rows and columns
 		int midCol = data[0].length / 2;
 		int midRow = data.length / 2;
 
-		T[] e = (T[]) new Object[midRow + midCol];
+		T[] arr = (T[]) new Object[midRow + midCol];
 
+//		If query is for "row" return the rows
 		if (rowCol.equals("row")) {
 
 			int rowNum = index - 1;
 			int len = data[0].length - 1;
 
 			while (len >= 0) {
-				e[len] = data[rowNum][len];
+				arr[len] = data[rowNum][len];
 				len--;
 			}
-		} else if (rowCol.equals("col")) {
+		} 
+//		if input is for columns return the elements of column
+		else if (rowCol.equals("col")) {
 
 			int colNum = index - 1;
 			int len = data.length - 1;
 
 			while (len >= 0) {
-				e[len] = data[len][colNum];
+				arr[len] = data[len][colNum];
 				System.out.println(data[len][colNum]);
 				len--;
 			}
 
 		}
 
-		return e;
+		return arr;
 	}
 }

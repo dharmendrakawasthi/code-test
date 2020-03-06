@@ -15,12 +15,10 @@ public class GroupImpl extends Group{
 
 	public GroupImpl() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public GroupImpl(String id, String name) {
 		super(id, name);
-		// TODO Auto-generated constructor stub
 	}
 
 	public List<UserImpl> getUsers() {

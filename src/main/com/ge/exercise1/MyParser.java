@@ -6,34 +6,29 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ge.exercise3.Account;
 
 public class MyParser implements Parser {
 
     private static final Logger logger = LogManager.getLogger(MyParser.class);
 
-	private String data;
-
-	public MyParser() {
-	}
-
-	public MyParser(String data) {
-		this.data = data;
-	}
-
+	public MyParser() {}
+	
 	@Override
 	public Application parseApplicationData(String data) {
-
+		
 		Application application = null;
-
+		
+//		Convert the input string to the JSON format
 		String newSt = convertTiJSON(data);
-		System.out.println(newSt);
+		
+	/*		
+	 *	1)  Map the string to the application object
+	 *    using the ObjectMapper class of com.fasterxml.jackson.databind.ObjectMapper
+	 *  2) then read the value to the Application object and return
+	*/	
 		try {
-
 			ObjectMapper mapper = new ObjectMapper();
-//			mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
 			application = mapper.readValue(newSt, ApplicationImpl.class);
 
 		} catch (Exception e) {
@@ -44,12 +39,17 @@ public class MyParser implements Parser {
 
 	private static String convertTiJSON(String data) {
 
+//		Replace the "(" with ":{" and ")" with "}"
 		data = data.replace("(", ":{").replace(")", "}");
+		
 		StringBuilder str = new StringBuilder();
+		
+//		Tockenize the string and store in a ArrayList
 		List<String> strList= Arrays.asList(data.split(":"));
+		
+//		Loop through list and replace the required string parts
 		for(String st: strList){
-			
-			if(st.contains("[")){
+			if(st.contains("[")){	
 				st = "[";
 			}
 			if(st.contains("},")){
@@ -61,6 +61,7 @@ public class MyParser implements Parser {
 			
 			str.append("\""+st+"\":");
 		}
+//		some more replacements to convert it to JSON format
 		str = new StringBuilder(str.toString().replace("\"[", "[\"").replace("{", "{\"").replace("}", "\"}")
 				.replace(":\"{", ":{").replace("]\"", "]").replace("}\"", "}").replace(":}","}").replace(":\"{", ":{\"")
 				.replace("[\"\":", "[").replace(":}", "}").replace("\" ", "\"").replace("}:{", "},{"));

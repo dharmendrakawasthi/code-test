@@ -8,7 +8,6 @@ public class ApplicationImpl extends Application{
 	Collection<UserImpl> users = new ArrayList<UserImpl>();
 	Collection<GroupImpl> groups = new ArrayList<GroupImpl>();
 	
-	
 	public ApplicationImpl() {}
 
 	public ApplicationImpl(String id, String name) {
