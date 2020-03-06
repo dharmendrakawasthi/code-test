@@ -110,12 +110,23 @@ public class ArrayQuadrantUtil<T> {
 		return arr;
 	}
 
+	/*
+	 * Method  getRowCol(String rowCol, int index) takes two arguments 
+	 * rowCol - takes two values either "row" or "col"
+	 * index - the row/column need to be returned (asuming row number starts from 1)
+	 *  e.g. getRowCol("row", 2) will return the elements of second row 
+	 */
+	
 	public T[] getRowCol(String rowCol, int index) {
 
 // get the middle of rows and columns
 		int midCol = data[0].length / 2;
 		int midRow = data.length / 2;
 
+		if(index == 0) {
+			return null;
+		}
+		
 		T[] arr = (T[]) new Object[midRow + midCol];
 
 //		If query is for "row" return the rows

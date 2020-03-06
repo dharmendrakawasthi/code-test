@@ -36,16 +36,21 @@ public class ArrayQuadrantUtilTest {
 	@Test
 	public void getRowColTest() {
 
-		Character[][] data = { { 'a', 'b', 'c', 'd' }, { 'e', 'f', 'g', 'h' }, { 'i', 'j', 'k', 'l' },
-				{ 'm', 'n', 'o', 'p' } };
+		Character[][] data = { { 'a', 'b', 'c', 'd' },
+				               { 'e', 'f', 'g', 'h' },
+				               { 'i', 'j', 'k', 'l' },
+			                   { 'm', 'n', 'o', 'p' } };
 
 		ArrayQuadrantUtil<Character> util = new ArrayQuadrantUtil<Character>(data);
 
 		Assume.assumeNotNull(util.getRowCol("row", 2));
 		Assume.assumeNotNull(util.getRowCol("col", 3));
 
-		Character[] expectedRow = { 'i', 'j', 'k', 'l' };
-		Character[] expectedCol = { 'd', 'h', 'l', 'p' };
+		Character[] expectedRow = {'e', 'f', 'g', 'h' };
+		Character[] expectedCol = { 'c', 'g', 'k', 'o' };
+
+		assertArrayEquals(expectedRow, util.getRowCol("row", 2));
+		assertArrayEquals(expectedCol, util.getRowCol("col", 3));
 
 	}
 
